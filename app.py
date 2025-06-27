@@ -1,6 +1,8 @@
 # Importing necessary modules from Flask
 from flask import Flask, request, jsonify, render_template
 
+import os 
+
 # Importing pickle to load the trained ML model and scaler
 import pickle
 
@@ -60,5 +62,10 @@ def predict():
 
 
 # This line starts the Flask application (only when this file is run directly)
+#if __name__ == "__main__":
+  #  app.run(debug=True)
+
 if __name__ == "__main__":
-    app.run(debug=True)
+    port = int(os.environ.get("PORT", 5000))  # Use Render's port if available
+    app.run(host='0.0.0.0', port=port, debug=True)
+
